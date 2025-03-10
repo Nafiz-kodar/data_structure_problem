@@ -26,8 +26,8 @@ def play_game(arena):
   row=len(arena)
   col=len(arena[0])
   point = 0
-  for i in range(0,row):
-    for j in range(0,col):
+  for i in range(row):
+    for j in range(col):
       if arena[i][j]>=50 and arena[i][j]%50 == 0:
         if i > 0 and arena[i-1][j] == 2:
           point += 2
