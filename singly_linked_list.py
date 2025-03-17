@@ -127,65 +127,96 @@ def node_at(head, idx):
 # printList(new_head)
 
 
-#//// question 20 ////
-def rearrangeNodes(head,x):
-    prev=None
-    current_head=head
-    temp=head
-    while temp!=None:
-        if temp.elem<=x:
-            prev=temp
-            temp=temp.next
-        elif temp.elem>x:
-            if temp.elem>current_head.elem:
-                t=temp
-                if prev is not None:
-                    prev.next = temp.next
-                else:
-                    head = temp.next
-                temp.next=current_head
-                current_head=t
-                temp=prev.next
-            else:
-                s=current_head.next
-                current_head.next=temp
-                temp.next=s
+# #//// question 20 ////
+# def rearrangeNodes(head,x):
+#     prev=None
+#     current_head=head
+#     temp=head
+#     while temp!=None:
+#         if temp.elem<=x:
+#             prev=temp
+#             temp=temp.next
+#         elif temp.elem>x:
+#             if temp.elem>current_head.elem:
+#                 t=temp
+#                 if prev is not None:
+#                     prev.next = temp.next
+#                 else:
+#                     head = temp.next
+#                 temp.next=current_head
+#                 current_head=t
+#                 temp=prev.next
+#             else:
+#                 s=current_head.next
+#                 current_head.next=temp
+#                 temp.next=s
 
     
-    return current_head
+#     return current_head
 
 
-            # Driver code to test the rearrangeNodes function
+#             # Driver code to test the rearrangeNodes function
+
+# # Create a linked list from an array
+# arr = [3, 5, 8, 5, 10, 2, 1]
+# head = createList(arr)
+
+# # Print the original list
+# print("Original list:")
+# printList(head)
+
+# # Rearrange nodes with x = 5
+# x = 5
+# new_head = rearrangeNodes(head, x)
+
+# # Print the modified list
+# print(f"Modified list after rearranging nodes with x = {x}:")
+# printList(new_head)
+# # Driver code to test the rearrangeNodes function
+
+# # Create a linked list from an array
+# arr = [2,3,9,4,2,7,5,3,6]
+# head = createList(arr)
+
+# # Print the original list
+# print("Original list:")
+# printList(head)
+
+# # Rearrange nodes with x = 3
+# x = 3
+# new_head = rearrangeNodes(head, x)
+
+# # Print the modified list
+# print(f"Modified list after rearranging nodes with x = {x}:")
+# printList(new_head)
+
+
+def validate_readings(head,low,high):
+    temp=head
+    while temp!=None:
+        if temp.elem>=low and temp.elem<=high:
+            return "Reading inside the range detected"
+        temp=temp.next
+    return head
+
+# Driver code to test the validate_readings function
 
 # Create a linked list from an array
-arr = [3, 5, 8, 5, 10, 2, 1]
+arr = [10, 20, 30, 40, 50]
 head = createList(arr)
 
 # Print the original list
 print("Original list:")
 printList(head)
 
-# Rearrange nodes with x = 5
-x = 5
-new_head = rearrangeNodes(head, x)
+# Validate readings with low = 15 and high = 35
+low = 15
+high = 35
+result = validate_readings(head, low, high)
+print(f"Validation result for readings between {low} and {high}: {result}")
 
-# Print the modified list
-print(f"Modified list after rearranging nodes with x = {x}:")
-printList(new_head)
-# Driver code to test the rearrangeNodes function
-
-# Create a linked list from an array
-arr = [2,3,9,4,2,7,5,3,6]
-head = createList(arr)
-
-# Print the original list
-print("Original list:")
-printList(head)
-
-# Rearrange nodes with x = 3
-x = 3
-new_head = rearrangeNodes(head, x)
-
-# Print the modified list
-print(f"Modified list after rearranging nodes with x = {x}:")
-printList(new_head)
+# Validate readings with low = 5 and high = 9
+low = 5
+high = 9
+result = validate_readings(head, low, high)
+print(f"Validation result for readings between {low} and {high}: {result}")
