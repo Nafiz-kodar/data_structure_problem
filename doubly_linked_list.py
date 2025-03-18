@@ -1,8 +1,8 @@
-# # class Node:
-# #     def __init__(self, elem):
-# #         self.elem = elem
-# #         self.next = None
-# #         self.prev = None
+# class Node:
+#     def __init__(self, elem):
+#         self.elem = elem
+#         self.next = None
+#         self.prev = None
 
 # # def create_doubly_linked_list(elements):
 # #     dummy_head = Node(None)
@@ -35,30 +35,29 @@
 
 # # #///Question 2////#
 
-# # # def Removes_client(head):
-# # #     temp = head.next
-# # #     len= length(head)
-# # #     while temp != head:
-# # #         next_node = temp.next
-# # #         if temp.elem % len == 0:
-# # #             temp.prev.next = temp.next
-# # #             temp.next.prev = temp.prev
-# # #         temp = next_node
-# # #     return head
+# # def Removes_client(head):
+# #     temp = head.next
+# #     len= length(head)
+# #     while temp != head:
+# #         if temp.elem % len == 0:
+# #             temp.prev.next = temp.next
+# #             temp.next.prev = temp.prev
+# #         temp = temp.next
+# #     return head
 
-# # # # Driver code
-# # # elements = [17, 36 ,66,12, 66, 67]
-# # # dummy_head = create_doubly_linked_list(elements)
+# # # Driver code
+# # elements = [17, 36 ,66,12, 66, 67]
+# # dummy_head = create_doubly_linked_list(elements)
 
-# # # print("Original list:")
-# # # printList(dummy_head)
+# # print("Original list:")
+# # printList(dummy_head)
 
-# # # dummy_head = Removes_client(dummy_head)
+# # dummy_head = Removes_client(dummy_head)
 
-# # # print("List after removing clients:")
-# # # printList(dummy_head)
+# # print("List after removing clients:")
+# # printList(dummy_head)
 
-# # #///Question 4////#
+# #///Question 4////#
 
 # # def insert_list(head_X, head_A, k):
 # #     # Check if k is valid
@@ -103,7 +102,7 @@
 # #         pos += 1
     
 # #     # If k is beyond the length of X, append A at the end
-# #     if pos < k:
+# #     if pos >= k:
 # #         current = head_X.prev  # The last node of X
     
 # #     # Now current is the node after which we need to insert list A
@@ -218,7 +217,7 @@
 # # print("\nSample Output 2:")
 # # print(print_doubly_circular(result2))
 
-# #//// Question 7////
+# # #//// Question 7////
 
 # class DoublyNode:
 #     def __init__(self, value):
@@ -310,20 +309,41 @@
 
 # # The reverseDLLBetweenTwoValues function should be implemented here
 # def reverseDLLBetweenTwoValues(head, x, y):
-#     """
-#     Reverse the nodes between values x and y in a dummy headed circular doubly linked list.
+#     temp = head.next
+#     start = None
+#     end = None
     
-#     Args:
-#         head: The dummy head node of the list
-#         x: The first value (comes before y in the list)
-#         y: The second value
-        
-#     Returns:
-#         The head of the modified list
-#     """
-#     # Your implementation here
-#     pass
-
+#     # Find the start node
+#     while temp != head:
+#         if temp.value == x:
+#             start = temp
+#             break
+#         temp = temp.next
+    
+#     # If start node is not found, return the original list
+#     if not start:
+#         return head
+    
+#     # Find the end node
+#     temp = head.next
+#     while temp != head:
+#         if temp.value == y:
+#             end = temp
+#             break
+#         temp = temp.next
+    
+#     # If end node is not found, return the original list
+#     if not end:
+#         return head
+    
+#     # Reverse the values between start and end
+#     while start != end and start.prev != end:
+#         start.value, end.value = end.value, start.value
+#         start = start.next
+#         end = end.prev
+    
+#     return head
+    
 # # Driver code
 # if __name__ == "__main__":
 #     # Sample function call from the question
@@ -335,7 +355,8 @@
 #     print("Sample Function Call:")
 #     print(f"head => {printDLL(head)},")
 #     print(f"x = {x}, y = {y}")
-#     print("\nreverseDLLBetweenTwoValues(head, x, y)")
+#     re=reverseDLLBetweenTwoValues(head, x, y)
+#     print(f"head => {printDLL(re)}")
     
 #     # The result after calling the function would be displayed here
 #     # For now, we'll just print the expected result
@@ -343,186 +364,185 @@
 #     print("Head of the modified linked list =>")
 #     print("10 ⇄ 40 ⇄ 90 ⇄ 30 ⇄ 20 ⇄ 50")
 
-
 # #////Question 8////
 
-# class Node:
-#     def __init__(self, elem):
-#         self.elem = elem
-#         self.next = None
-#         self.prev = None
+# # class Node:
+# #     def __init__(self, elem):
+# #         self.elem = elem
+# #         self.next = None
+# #         self.prev = None
 
-# def create_doubly_linked_list(elements):
-#     """
-#     Create a doubly linked list from a list of elements.
+# # def create_doubly_linked_list(elements):
+# #     """
+# #     Create a doubly linked list from a list of elements.
     
-#     Args:
-#         elements: List of integers to create nodes from
+# #     Args:
+# #         elements: List of integers to create nodes from
         
-#     Returns:
-#         head: The head node of the created list
-#     """
-#     if not elements:
-#         return None
+# #     Returns:
+# #         head: The head node of the created list
+# #     """
+# #     if not elements:
+# #         return None
     
-#     # Create the head node
-#     head = Node(elements[0])
-#     current = head
+# #     # Create the head node
+# #     head = Node(elements[0])
+# #     current = head
     
-#     # Create the rest of the nodes
-#     for elem in elements[1:]:
-#         new_node = Node(elem)
-#         new_node.prev = current
-#         current.next = new_node
-#         current = new_node
+# #     # Create the rest of the nodes
+# #     for elem in elements[1:]:
+# #         new_node = Node(elem)
+# #         new_node.prev = current
+# #         current.next = new_node
+# #         current = new_node
         
-#     return head
+# #     return head
 
-# def print_doubly_linked_list(head):
-#     """
-#     Print a doubly linked list in the format specified in the problem.
+# # def print_doubly_linked_list(head):
+# #     """
+# #     Print a doubly linked list in the format specified in the problem.
     
-#     Args:
-#         head: The head node of the list
+# #     Args:
+# #         head: The head node of the list
         
-#     Returns:
-#         A string representation of the list
-#     """
-#     if not head:
-#         return "Empty list"
+# #     Returns:
+# #         A string representation of the list
+# #     """
+# #     if not head:
+# #         return "Empty list"
         
-#     result = []
-#     current = head
+# #     result = []
+# #     current = head
     
-#     while current:
-#         result.append(str(current.elem))
-#         current = current.next
+# #     while current:
+# #         result.append(str(current.elem))
+# #         current = current.next
         
-#     return " ⇄ ".join(result)
+# #     return " ⇄ ".join(result)
 
-# def is_odd(num):
-#     """
-#     Check if a number is odd.
+# # def is_odd(num):
+# #     """
+# #     Check if a number is odd.
     
-#     Args:
-#         num: The number to check
+# #     Args:
+# #         num: The number to check
         
-#     Returns:
-#         True if the number is odd, False otherwise
-#     """
-#     return num % 2 != 0
+# #     Returns:
+# #         True if the number is odd, False otherwise
+# #     """
+# #     return num % 2 != 0
 
-# def count_odd_elements(head):
-#     """
-#     Count the number of odd elements in the list.
+# # def count_odd_elements(head):
+# #     """
+# #     Count the number of odd elements in the list.
     
-#     Args:
-#         head: The head node of the list
+# #     Args:
+# #         head: The head node of the list
         
-#     Returns:
-#         The count of odd elements
-#     """
-#     count = 0
-#     current = head
+# #     Returns:
+# #         The count of odd elements
+# #     """
+# #     count = 0
+# #     current = head
     
-#     while current:
-#         if is_odd(current.elem):
-#             count += 1
-#         current = current.next
+# #     while current:
+# #         if is_odd(current.elem):
+# #             count += 1
+# #         current = current.next
         
-#     return count
+# #     return count
 
-# def get_tail(head):
-#     """
-#     Get the tail node of the list.
+# # def get_tail(head):
+# #     """
+# #     Get the tail node of the list.
     
-#     Args:
-#         head: The head node of the list
+# #     Args:
+# #         head: The head node of the list
         
-#     Returns:
-#         The tail node of the list
-#     """
-#     if not head:
-#         return None
+# #     Returns:
+# #         The tail node of the list
+# #     """
+# #     if not head:
+# #         return None
         
-#     current = head
-#     while current.next:
-#         current = current.next
+# #     current = head
+# #     while current.next:
+# #         current = current.next
         
-#     return current
+# #     return current
 
-# # The main function to rearrange the list should be implemented here
+# # # The main function to rearrange the list should be implemented here
 # # def rearrange_odd_even(head):
 # #     """
 # #     Rearrange the doubly linked list so that all odd elements appear before all even elements
 # #     while maintaining the relative order.
-# #     
+    
 # #     Args:
 # #         head: The head node of the list
-# #         
+        
 # #     Returns:
 # #         The head node of the rearranged list
 # #     """
 # #     # Your implementation here
 # #     pass
 
-# # Driver code to test the functions
-# def test_helpers():
-#     # Test case 1: [5, 2, 8, 1, 4, 7]
-#     elements1 = [5, 2, 8, 1, 4, 7]
-#     head1 = create_doubly_linked_list(elements1)
-#     print(f"Original list 1: {print_doubly_linked_list(head1)}")
-#     print(f"Odd elements count: {count_odd_elements(head1)}")
-#     print(f"Is 5 odd? {is_odd(5)}")
-#     print(f"Is 2 odd? {is_odd(2)}")
-#     tail1 = get_tail(head1)
-#     print(f"Tail element: {tail1.elem}")
+# # # Driver code to test the functions
+# # def test_helpers():
+# #     # Test case 1: [5, 2, 8, 1, 4, 7]
+# #     elements1 = [5, 2, 8, 1, 4, 7]
+# #     head1 = create_doubly_linked_list(elements1)
+# #     print(f"Original list 1: {print_doubly_linked_list(head1)}")
+# #     print(f"Odd elements count: {count_odd_elements(head1)}")
+# #     print(f"Is 5 odd? {is_odd(5)}")
+# #     print(f"Is 2 odd? {is_odd(2)}")
+# #     tail1 = get_tail(head1)
+# #     print(f"Tail element: {tail1.elem}")
     
-#     # Test case 2: [7, 9, 2, 4]
-#     elements2 = [7, 9, 2, 4]
-#     head2 = create_doubly_linked_list(elements2)
-#     print(f"\nOriginal list 2: {print_doubly_linked_list(head2)}")
+# #     # Test case 2: [7, 9, 2, 4]
+# #     elements2 = [7, 9, 2, 4]
+# #     head2 = create_doubly_linked_list(elements2)
+# #     print(f"\nOriginal list 2: {print_doubly_linked_list(head2)}")
     
-#     # Test case 3: [6, 2, 8, 10, 12]
-#     elements3 = [6, 2, 8, 10, 12]
-#     head3 = create_doubly_linked_list(elements3)
-#     print(f"\nOriginal list 3: {print_doubly_linked_list(head3)}")
+# #     # Test case 3: [6, 2, 8, 10, 12]
+# #     elements3 = [6, 2, 8, 10, 12]
+# #     head3 = create_doubly_linked_list(elements3)
+# #     print(f"\nOriginal list 3: {print_doubly_linked_list(head3)}")
 
-# def run_examples():
-#     # Example 1
-#     print("Example 1:")
-#     elements1 = [5, 2, 8, 1, 4, 7]
-#     head1 = create_doubly_linked_list(elements1)
-#     print(f"Input: {print_doubly_linked_list(head1)}")
-#     # After implementing rearrange_odd_even, uncomment the following lines
-#     # result1 = rearrange_odd_even(head1)
-#     # print(f"Output: {print_doubly_linked_list(result1)}")
-#     print("Expected output: 5 ⇄ 1 ⇄ 7 ⇄ 2 ⇄ 8 ⇄ 4")
+# # def run_examples():
+# #     # Example 1
+# #     print("Example 1:")
+# #     elements1 = [5, 2, 8, 1, 4, 7]
+# #     head1 = create_doubly_linked_list(elements1)
+# #     print(f"Input: {print_doubly_linked_list(head1)}")
+# #     # After implementing rearrange_odd_even, uncomment the following lines
+# #     # result1 = rearrange_odd_even(head1)
+# #     # print(f"Output: {print_doubly_linked_list(result1)}")
+# #     print("Expected output: 5 ⇄ 1 ⇄ 7 ⇄ 2 ⇄ 8 ⇄ 4")
     
-#     # Example 2
-#     print("\nExample 2:")
-#     elements2 = [7, 9, 2, 4]
-#     head2 = create_doubly_linked_list(elements2)
-#     print(f"Input: {print_doubly_linked_list(head2)}")
-#     # After implementing rearrange_odd_even, uncomment the following lines
-#     # result2 = rearrange_odd_even(head2)
-#     # print(f"Output: {print_doubly_linked_list(result2)}")
-#     print("Expected output: 7 ⇄ 9 ⇄ 2 ⇄ 4")
+# #     # Example 2
+# #     print("\nExample 2:")
+# #     elements2 = [7, 9, 2, 4]
+# #     head2 = create_doubly_linked_list(elements2)
+# #     print(f"Input: {print_doubly_linked_list(head2)}")
+# #     # After implementing rearrange_odd_even, uncomment the following lines
+# #     # result2 = rearrange_odd_even(head2)
+# #     # print(f"Output: {print_doubly_linked_list(result2)}")
+# #     print("Expected output: 7 ⇄ 9 ⇄ 2 ⇄ 4")
     
-#     # Example 3
-#     print("\nExample 3:")
-#     elements3 = [6, 2, 8, 10, 12]
-#     head3 = create_doubly_linked_list(elements3)
-#     print(f"Input: {print_doubly_linked_list(head3)}")
-#     # After implementing rearrange_odd_even, uncomment the following lines
-#     # result3 = rearrange_odd_even(head3)
-#     # print(f"Output: {print_doubly_linked_list(result3)}")
-#     print("Expected output: 6 ⇄ 2 ⇄ 8 ⇄ 10 ⇄ 12")
+# #     # Example 3
+# #     print("\nExample 3:")
+# #     elements3 = [6, 2, 8, 10, 12]
+# #     head3 = create_doubly_linked_list(elements3)
+# #     print(f"Input: {print_doubly_linked_list(head3)}")
+# #     # After implementing rearrange_odd_even, uncomment the following lines
+# #     # result3 = rearrange_odd_even(head3)
+# #     # print(f"Output: {print_doubly_linked_list(result3)}")
+# #     print("Expected output: 6 ⇄ 2 ⇄ 8 ⇄ 10 ⇄ 12")
 
-# if __name__ == "__main__":
-#     # Uncomment the function you want to run
-#     # test_helpers()
-#     run_examples()
+# # if __name__ == "__main__":
+# #     # Uncomment the function you want to run
+# #     # test_helpers()
+# #     run_examples()
 
 
 #////Question 11////
