@@ -643,4 +643,6 @@ if __name__ == "__main__":
     head4 = create_circular_doubly_linked_list([])
     result4 = findPair(head4, 20)
     print("Test case 4:", end=" ")
+    print
     print_result(result4)
+    print

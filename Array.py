@@ -233,41 +233,41 @@ import numpy as np
 
 # """////Question 6////"""
 
-# def rotate_matrix(matrix):
-#     row = len(matrix)
-#     col = len(matrix[0])
-#     for i in range(row):
-#         for j in range(col):
-#             if i < j:
-#                 matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+def rotate_matrix(matrix):
+    row = len(matrix)
+    col = len(matrix[0])
+    for i in range(row):
+        for j in range(col):
+            if i < j:
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
 
-#     for j in range(col):
-#         for i in range(row//2):
-#             temp=matrix[j][i]
-#             matrix[j][i]=matrix[j][row-i-1]
-#             matrix[j][row-i-1]=temp
-#     return matrix
+    for j in range(col):
+        for i in range(row//2):
+            temp=matrix[j][i]
+            matrix[j][i]=matrix[j][row-i-1]
+            matrix[j][row-i-1]=temp
+    return matrix
 
-# # Sample Input
-# matrix1 = [
-#     [1, 2, 3],
-#     [4, 5, 6],
-#     [7, 8, 9]
-# ]
+# Sample Input
+matrix1 = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
 
-# matrix2 = [
-#     [5, 1, 9, 11],
-#     [2, 4, 8, 10],
-#     [13, 3, 6, 7],
-#     [15, 14, 12, 16]
-# ]
+matrix2 = [
+    [5, 1, 9, 11],
+    [2, 4, 8, 10],
+    [13, 3, 6, 7],
+    [15, 14, 12, 16]
+]
 
-# # Rotate matrices
-# result1 = rotate_matrix(matrix1)
-# result2 = rotate_matrix(matrix2)
+# Rotate matrices
+result1 = rotate_matrix(matrix1)
+result2 = rotate_matrix(matrix2)
 
-# print(result1) # Output: [[7, 4, 1], [8, 5, 2], [9, 6, 3]]
-# print(result2) # Output: [[15,13,2,5], [14,3,4,1], [12,6,8,9], [16,7,10,11]]
+print(result1) # Output: [[7, 4, 1], [8, 5, 2], [9, 6, 3]]
+print(result2) # Output: [[15,13,2,5], [14,3,4,1], [12,6,8,9], [16,7,10,11]]
 
 """////Question 7////"""
 
@@ -308,39 +308,39 @@ import numpy as np
 # zig_zag(matrix)  # Should print: D A B W G G O U T S H R S R N O
 
 
-def zig_zag(matrix):
-    n = len(matrix)  # Size of square matrix
-    result = ""
+# def zig_zag(matrix):
+#     n = len(matrix)  # Size of square matrix
+#     result = ""
     
-    # Traverse all diagonals
-    for diagonal_sum in range(2*n - 1):
-        # Set starting position for current diagonal
-        if diagonal_sum < n:
-            row = diagonal_sum
-            col = 0
-        else:
-            row = n - 1
-            col = diagonal_sum - n + 1
+#     # Traverse all diagonals
+#     for diagonal_sum in range(2*n - 1):
+#         # Set starting position for current diagonal
+#         if diagonal_sum < n:
+#             row = diagonal_sum
+#             col = 0
+#         else:
+#             row = n - 1
+#             col = diagonal_sum - n + 1
         
-        # Traverse current diagonal (moving up-right)
-        while row >= 0 and col < n:
-            result += matrix[row][col] + " "
-            row = row - 1
-            col = col + 1
+#         # Traverse current diagonal (moving up-right)
+#         while row >= 0 and col < n:
+#             result += matrix[row][col] + " "
+#             row = row - 1
+#             col = col + 1
     
-    # Remove trailing space manually
-    trimmed_result = ""
-    for i in range(len(result) - 1):  # Skip last character if it's a space
-        trimmed_result += result[i]
+#     # Remove trailing space manually
+#     trimmed_result = ""
+#     for i in range(len(result) - 1):  # Skip last character if it's a space
+#         trimmed_result += result[i]
     
-    print(trimmed_result)
+#     print(trimmed_result)
 
-# Example matrix from the problem
-matrix = [
-    ['D', 'B', 'G', 'S'],
-    ['A', 'G', 'T', 'S'],
-    ['W', 'U', 'R', 'N'],
-    ['O', 'H', 'R', 'O']
-]
+# # Example matrix from the problem
+# matrix = [
+#     ['D', 'B', 'G', 'S'],
+#     ['A', 'G', 'T', 'S'],
+#     ['W', 'U', 'R', 'N'],
+#     ['O', 'H', 'R', 'O']
+# ]
 
-zig_zag(matrix)
+# zig_zag(matrix)
